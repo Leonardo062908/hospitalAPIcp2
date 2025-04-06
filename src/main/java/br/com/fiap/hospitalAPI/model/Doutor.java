@@ -9,6 +9,7 @@ import java.util.List;
 
 @Entity
 public class Doutor {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,14 +21,21 @@ public class Doutor {
     @Pattern(regexp = "\\d{4,6}", message = "CRM deve conter de 4 a 6 dígitos")
     private String crm;
 
-    @Enumerated(EnumType.STRING)
-    private Especialidade especialidade;
-
     @Email(message = "O e-mail deve ser válido")
     private String email;
 
-    @OneToMany(mappedBy = "doutor")
-    private List<br.com.fiap.hospitalapi.model.Paciente> pacientes;
+    // 🔁 Relacionamento N:N com Paciente
+    @ManyToMany(mappedBy = "doutores")
+    private List<Paciente> pacientes;
+
+    // 🔁 Relacionamento N:N com Especialidade
+    @ManyToMany
+    @JoinTable(
+            name = "doutor_especialidade",
+            joinColumns = @JoinColumn(name = "doutor_id"),
+            inverseJoinColumns = @JoinColumn(name = "especialidade_id")
+    )
+    private List<Especialidade> especialidades;
 
     // Getters e Setters
     public Long getId() {
@@ -54,14 +62,6 @@ public class Doutor {
         this.crm = crm;
     }
 
-    public Especialidade getEspecialidade() {
-        return especialidade;
-    }
-
-    public void setEspecialidade(Especialidade especialidade) {
-        this.especialidade = especialidade;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -76,5 +76,13 @@ public class Doutor {
 
     public void setPacientes(List<Paciente> pacientes) {
         this.pacientes = pacientes;
+    }
+
+    public List<Especialidade> getEspecialidades() {
+        return especialidades;
+    }
+
+    public void setEspecialidades(List<Especialidade> especialidades) {
+        this.especialidades = especialidades;
     }
 }

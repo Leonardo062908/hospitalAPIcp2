@@ -1,4 +1,4 @@
-package br.com.fiap.hospitalapi.model;
+package br.com.fiap.hospitalAPI.model;
 
 import br.com.fiap.hospitalAPI.model.Doutor;
 import br.com.fiap.hospitalAPI.model.Hospital;
