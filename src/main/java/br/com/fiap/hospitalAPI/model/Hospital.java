@@ -1,2 +1,4 @@
-package br.com.fiap.hospitalAPI.model;public class Hospital {
+package br.com.fiap.hospitalAPI.model;
+
+public class Hospital {
 }

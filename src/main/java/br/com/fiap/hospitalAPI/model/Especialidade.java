@@ -1,2 +1,4 @@
-package br.com.fiap.hospitalAPI.model;public enum Especialidade {
+package br.com.fiap.hospitalAPI.model;
+
+public enum Especialidade {
 }
