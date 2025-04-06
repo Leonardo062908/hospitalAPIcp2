@@ -1,8 +1,11 @@
 package br.com.fiap.hospitalAPI.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+
+import java.util.List;
 
 @Entity
 public class Doutor {
@@ -24,7 +27,7 @@ public class Doutor {
     private String email;
 
     @OneToMany(mappedBy = "doutor")
-    private List<Paciente> pacientes;
+    private List<br.com.fiap.hospitalapi.model.Paciente> pacientes;
 
     // Getters e Setters
     public Long getId() {

@@ -1,5 +1,7 @@
 package br.com.fiap.hospitalapi.model;
 
+import br.com.fiap.hospitalAPI.model.Doutor;
+import br.com.fiap.hospitalAPI.model.Hospital;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
