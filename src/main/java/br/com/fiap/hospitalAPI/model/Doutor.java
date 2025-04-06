@@ -24,11 +24,11 @@ public class Doutor {
     @Email(message = "O e-mail deve ser válido")
     private String email;
 
-    // 🔁 Relacionamento N:N com Paciente
+    //Relacionamento N:N com Paciente
     @ManyToMany(mappedBy = "doutores")
     private List<Paciente> pacientes;
 
-    // 🔁 Relacionamento N:N com Especialidade
+    //Relacionamento N:N com Especialidade
     @ManyToMany
     @JoinTable(
             name = "doutor_especialidade",
@@ -37,7 +37,6 @@ public class Doutor {
     )
     private List<Especialidade> especialidades;
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }

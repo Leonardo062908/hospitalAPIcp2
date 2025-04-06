@@ -30,7 +30,6 @@ public class Hospital {
     @OneToMany(mappedBy = "hospital")
     private List<Paciente> pacientes;
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }
