@@ -1,35 +1,31 @@
-package br.com.fiap.hospitalAPI.dto;
+package br.com.fiap.hospitalAPI.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+
 import java.util.List;
 
-public class DoutorDTO {
+public class DoutorRequestDTO {
 
-    private Long id;
-
-    @NotBlank(message = "O nome não pode estar em branco!")
+    @NotBlank(message = "O nome é obrigatório")
     private String nome;
 
-    @Pattern(regexp = "\\d{4,6}", message = "CRM deve conter 6 dígitos")
+    @NotBlank(message = "CRM é obrigatório")
+    @Pattern(regexp = "\\d{4,6}", message = "CRM deve conter de 4 a 6 dígitos numéricos")
     private String crm;
 
-    @Email(message = "O e-mail deve ser válido")
+    @NotBlank(message = "E-mail é obrigatório")
+    @Email(message = "E-mail inválido")
     private String email;
 
+    // IDs das especialidades que o doutor possui
     private List<Long> especialidadeIds;
 
+    // IDs dos pacientes atendidos (opcional)
     private List<Long> pacienteIds;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    // Getters e Setters
     public String getNome() {
         return nome;
     }

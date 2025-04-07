@@ -1,6 +1,7 @@
 package br.com.fiap.hospitalAPI.mapper;
 
-import br.com.fiap.hospitalAPI.dto.DoutorDTO;
+import br.com.fiap.hospitalAPI.dto.request.DoutorRequestDTO;
+import br.com.fiap.hospitalAPI.dto.response.DoutorResponseDTO;
 import br.com.fiap.hospitalAPI.model.Doutor;
 import br.com.fiap.hospitalAPI.model.Especialidade;
 import br.com.fiap.hospitalAPI.model.Paciente;
@@ -10,8 +11,9 @@ import java.util.stream.Collectors;
 
 public class DoutorMapper {
 
-    public static DoutorDTO toDTO(Doutor doutor) {
-        DoutorDTO dto = new DoutorDTO();
+    // Converter de entidade para DTO de resposta
+    public static DoutorResponseDTO toResponseDTO(Doutor doutor) {
+        DoutorResponseDTO dto = new DoutorResponseDTO();
         dto.setId(doutor.getId());
         dto.setNome(doutor.getNome());
         dto.setCrm(doutor.getCrm());
@@ -36,12 +38,14 @@ public class DoutorMapper {
         return dto;
     }
 
-    public static Doutor toEntity(DoutorDTO dto) {
+    // Converter DTO de requisição para entidade
+    public static Doutor toEntity(DoutorRequestDTO dto) {
         Doutor doutor = new Doutor();
-        doutor.setId(dto.getId());
         doutor.setNome(dto.getNome());
         doutor.setCrm(dto.getCrm());
         doutor.setEmail(dto.getEmail());
+
+        // Relacionamentos com Paciente/Especialidade são montados no service
         doutor.setEspecialidades(null);
         doutor.setPacientes(null);
 

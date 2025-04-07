@@ -1,6 +1,7 @@
 package br.com.fiap.hospitalAPI.service;
 
-import br.com.fiap.hospitalAPI.dto.DoutorDTO;
+import br.com.fiap.hospitalAPI.dto.request.DoutorRequestDTO;
+import br.com.fiap.hospitalAPI.dto.response.DoutorResponseDTO;
 import br.com.fiap.hospitalAPI.mapper.DoutorMapper;
 import br.com.fiap.hospitalAPI.model.Doutor;
 import br.com.fiap.hospitalAPI.Repository.DoutorRepository;
@@ -17,25 +18,25 @@ public class DoutorService {
     @Autowired
     private DoutorRepository doutorRepository;
 
-    public List<DoutorDTO> listarTodos() {
+    public List<DoutorResponseDTO> listarTodos() {
         return doutorRepository.findAll()
                 .stream()
-                .map(DoutorMapper::toDTO)
+                .map(DoutorMapper::toResponseDTO)
                 .collect(Collectors.toList());
     }
 
-    public DoutorDTO buscarPorId(Long id) {
+    public DoutorResponseDTO buscarPorId(Long id) {
         Optional<Doutor> optional = doutorRepository.findById(id);
-        return optional.map(DoutorMapper::toDTO).orElse(null);
+        return optional.map(DoutorMapper::toResponseDTO).orElse(null);
     }
 
-    public DoutorDTO criar(DoutorDTO dto) {
+    public DoutorResponseDTO criar(DoutorRequestDTO dto) {
         Doutor entity = DoutorMapper.toEntity(dto);
         Doutor salvo = doutorRepository.save(entity);
-        return DoutorMapper.toDTO(salvo);
+        return DoutorMapper.toResponseDTO(salvo);
     }
 
-    public DoutorDTO atualizar(Long id, DoutorDTO dto) {
+    public DoutorResponseDTO atualizar(Long id, DoutorRequestDTO dto) {
         Optional<Doutor> optional = doutorRepository.findById(id);
         if (optional.isEmpty()) {
             return null;
@@ -47,16 +48,15 @@ public class DoutorService {
         existente.setEmail(dto.getEmail());
 
         Doutor atualizado = doutorRepository.save(existente);
-        return DoutorMapper.toDTO(atualizado);
+        return DoutorMapper.toResponseDTO(atualizado);
     }
 
     public boolean deletar(Long id) {
-        Optional<Doutor> doutor = doutorRepository.findById(id);
-        if (doutor.isPresent()) {
-            doutorRepository.delete(doutor.get());
+        Optional<Doutor> optional = doutorRepository.findById(id);
+        if (optional.isPresent()) {
+            doutorRepository.delete(optional.get());
             return true;
         }
         return false;
     }
-
 }
