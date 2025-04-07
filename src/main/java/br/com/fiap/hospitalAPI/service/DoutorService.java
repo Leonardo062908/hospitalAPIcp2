@@ -50,7 +50,13 @@ public class DoutorService {
         return DoutorMapper.toDTO(atualizado);
     }
 
-    public void deletar(Long id) {
-        doutorRepository.deleteById(id);
+    public boolean deletar(Long id) {
+        Optional<Doutor> doutor = doutorRepository.findById(id);
+        if (doutor.isPresent()) {
+            doutorRepository.delete(doutor.get());
+            return true;
+        }
+        return false;
     }
+
 }
