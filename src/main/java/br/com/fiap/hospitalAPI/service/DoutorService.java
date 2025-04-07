@@ -1,7 +1,7 @@
 package br.com.fiap.hospitalAPI.service;
 
-import br.com.fiap.hospitalAPI.dto.request.DoutorRequestDTO;
-import br.com.fiap.hospitalAPI.dto.response.DoutorResponseDTO;
+import br.com.fiap.hospitalAPI.dto.DoutorRequestDTO;
+import br.com.fiap.hospitalAPI.dto.DoutorResponseDTO;
 import br.com.fiap.hospitalAPI.mapper.DoutorMapper;
 import br.com.fiap.hospitalAPI.model.Doutor;
 import br.com.fiap.hospitalAPI.Repository.DoutorRepository;

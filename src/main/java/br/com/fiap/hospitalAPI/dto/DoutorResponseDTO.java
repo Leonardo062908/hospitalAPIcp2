@@ -1,4 +1,4 @@
-package br.com.fiap.hospitalAPI.dto.response;
+package br.com.fiap.hospitalAPI.dto;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package br.com.fiap.hospitalAPI.dto.request;
+package br.com.fiap.hospitalAPI.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

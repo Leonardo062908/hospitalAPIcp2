@@ -1,7 +1,7 @@
 package br.com.fiap.hospitalAPI.mapper;
 
-import br.com.fiap.hospitalAPI.dto.request.EnderecoRequestDTO;
-import br.com.fiap.hospitalAPI.dto.response.EnderecoResponseDTO;
+import br.com.fiap.hospitalAPI.dto.EnderecoRequestDTO;
+import br.com.fiap.hospitalAPI.dto.EnderecoResponseDTO;
 import br.com.fiap.hospitalAPI.model.Endereco;
 
 public class EnderecoMapper {

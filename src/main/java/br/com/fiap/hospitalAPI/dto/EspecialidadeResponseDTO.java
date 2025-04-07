@@ -1,19 +1,10 @@
 package br.com.fiap.hospitalAPI.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import java.util.List;
-
-public class EspecialidadeDTO {
+public class EspecialidadeResponseDTO {
 
     private Long id;
-
-    @NotBlank(message = "Nome da especialidade é obrigatório")
     private String nome;
-
     private String descricao;
-
-    // Lista de IDs dos doutores que possuem essa especialidade (opcional)
-    private List<Long> doutorIds;
 
     // Getters e Setters
     public Long getId() {
@@ -38,13 +29,5 @@ public class EspecialidadeDTO {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public List<Long> getDoutorIds() {
-        return doutorIds;
-    }
-
-    public void setDoutorIds(List<Long> doutorIds) {
-        this.doutorIds = doutorIds;
     }
 }
