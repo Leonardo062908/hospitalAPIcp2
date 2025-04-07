@@ -1,6 +1,7 @@
 package br.com.fiap.hospitalAPI.service;
 
-import br.com.fiap.hospitalAPI.dto.EspecialidadeDTO;
+import br.com.fiap.hospitalAPI.dto.EspecialidadeRequestDTO;
+import br.com.fiap.hospitalAPI.dto.EspecialidadeResponseDTO;
 import br.com.fiap.hospitalAPI.mapper.EspecialidadeMapper;
 import br.com.fiap.hospitalAPI.model.Especialidade;
 import br.com.fiap.hospitalAPI.Repository.EspecialidadeRepository;
@@ -17,25 +18,25 @@ public class EspecialidadeService {
     @Autowired
     private EspecialidadeRepository especialidadeRepository;
 
-    public List<EspecialidadeDTO> listarTodos() {
+    public List<EspecialidadeResponseDTO> listarTodos() {
         return especialidadeRepository.findAll()
                 .stream()
-                .map(EspecialidadeMapper::toDTO)
+                .map(EspecialidadeMapper::toResponseDTO)
                 .collect(Collectors.toList());
     }
 
-    public EspecialidadeDTO buscarPorId(Long id) {
-        Optional<Especialidade> especialidade = especialidadeRepository.findById(id);
-        return especialidade.map(EspecialidadeMapper::toDTO).orElse(null);
+    public EspecialidadeResponseDTO buscarPorId(Long id) {
+        Optional<Especialidade> optional = especialidadeRepository.findById(id);
+        return optional.map(EspecialidadeMapper::toResponseDTO).orElse(null);
     }
 
-    public EspecialidadeDTO criar(EspecialidadeDTO dto) {
-        Especialidade entity = EspecialidadeMapper.toEntity(dto);
-        Especialidade salvo = especialidadeRepository.save(entity);
-        return EspecialidadeMapper.toDTO(salvo);
+    public EspecialidadeResponseDTO criar(EspecialidadeRequestDTO dto) {
+        Especialidade especialidade = EspecialidadeMapper.toEntity(dto);
+        Especialidade salvo = especialidadeRepository.save(especialidade);
+        return EspecialidadeMapper.toResponseDTO(salvo);
     }
 
-    public EspecialidadeDTO atualizar(Long id, EspecialidadeDTO dto) {
+    public EspecialidadeResponseDTO atualizar(Long id, EspecialidadeRequestDTO dto) {
         Optional<Especialidade> optional = especialidadeRepository.findById(id);
         if (optional.isEmpty()) {
             return null;
@@ -46,13 +47,13 @@ public class EspecialidadeService {
         existente.setDescricao(dto.getDescricao());
 
         Especialidade atualizado = especialidadeRepository.save(existente);
-        return EspecialidadeMapper.toDTO(atualizado);
+        return EspecialidadeMapper.toResponseDTO(atualizado);
     }
 
     public boolean deletar(Long id) {
-        Optional<Especialidade> especialidade = especialidadeRepository.findById(id);
-        if (especialidade.isPresent()) {
-            especialidadeRepository.delete(especialidade.get());
+        Optional<Especialidade> optional = especialidadeRepository.findById(id);
+        if (optional.isPresent()) {
+            especialidadeRepository.delete(optional.get());
             return true;
         }
         return false;
