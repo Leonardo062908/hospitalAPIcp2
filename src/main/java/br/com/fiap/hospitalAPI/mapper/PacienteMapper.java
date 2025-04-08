@@ -18,8 +18,8 @@ public class PacienteMapper {
         paciente.setDataNascimento(dto.getDataNascimento());
         paciente.setDoencas(dto.getDoencas());
         paciente.setTelefone(dto.getTelefone());
-        paciente.setHospital(null); // setado no service
-        paciente.setDoutores(null); // setado no service
+        paciente.setHospital(null);
+        paciente.setDoutores(null);
         return paciente;
     }
 

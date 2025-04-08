@@ -32,7 +32,6 @@ public class Paciente {
     @Pattern(regexp = "\\d{11}", message = "Telefone deve conter 11 dígitos")
     private String telefone;
 
-    //Relacionamento N:N com Doutor
     @ManyToMany
     @JoinTable(
             name = "paciente_doutor",
@@ -41,7 +40,6 @@ public class Paciente {
     )
     private List<Doutor> doutores;
 
-    //Relacionamento com Hospital (Muitos para Um)
     @ManyToOne
     @JoinColumn(name = "hospital_id")
     private Hospital hospital;

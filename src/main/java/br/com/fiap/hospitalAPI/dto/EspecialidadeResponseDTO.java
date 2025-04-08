@@ -6,7 +6,6 @@ public class EspecialidadeResponseDTO {
     private String nome;
     private String descricao;
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }

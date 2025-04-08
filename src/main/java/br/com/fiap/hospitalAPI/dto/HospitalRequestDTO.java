@@ -16,7 +16,6 @@ public class HospitalRequestDTO {
     @Valid
     private EnderecoRequestDTO endereco;
 
-    // Getters e Setters
     public String getNome() {
         return nome;
     }

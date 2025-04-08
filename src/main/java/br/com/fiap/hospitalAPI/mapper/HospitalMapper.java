@@ -11,8 +11,8 @@ public class HospitalMapper {
         hospital.setNome(dto.getNome());
         hospital.setCnpj(dto.getCnpj());
         hospital.setEndereco(EnderecoMapper.toEntity(dto.getEndereco()));
-        hospital.setDoutores(null);  // tratamos em outra lógica
-        hospital.setPacientes(null); // tratamos em outra lógica
+        hospital.setDoutores(null);
+        hospital.setPacientes(null);
         return hospital;
     }
 

@@ -11,7 +11,6 @@ public class EnderecoResponseDTO {
     private String estado;
     private String cep;
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }

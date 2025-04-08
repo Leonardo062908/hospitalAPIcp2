@@ -26,7 +26,6 @@ public class EnderecoRequestDTO {
     @Pattern(regexp = "\\d{5}-\\d{3}", message = "CEP deve estar no formato 00000-000")
     private String cep;
 
-    // Getters e Setters
     public String getLogradouro() {
         return logradouro;
     }

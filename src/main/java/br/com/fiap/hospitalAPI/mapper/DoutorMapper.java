@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 public class DoutorMapper {
 
-    // Converter de entidade para DTO de resposta
     public static DoutorResponseDTO toResponseDTO(Doutor doutor) {
         DoutorResponseDTO dto = new DoutorResponseDTO();
         dto.setId(doutor.getId());
@@ -38,14 +37,12 @@ public class DoutorMapper {
         return dto;
     }
 
-    // Converter DTO de requisição para entidade
     public static Doutor toEntity(DoutorRequestDTO dto) {
         Doutor doutor = new Doutor();
         doutor.setNome(dto.getNome());
         doutor.setCrm(dto.getCrm());
         doutor.setEmail(dto.getEmail());
 
-        // Relacionamentos com Paciente/Especialidade são montados no service
         doutor.setEspecialidades(null);
         doutor.setPacientes(null);
 

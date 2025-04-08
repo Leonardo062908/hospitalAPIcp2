@@ -28,7 +28,6 @@ public class Doutor {
     @ManyToMany(mappedBy = "doutores")
     private List<Paciente> pacientes;
 
-    //Relacionamento N:N com Especialidade
     @ManyToMany
     @JoinTable(
             name = "doutor_especialidade",

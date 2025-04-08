@@ -12,7 +12,6 @@ public class DoutorResponseDTO {
     private List<Long> especialidadeIds;
     private List<Long> pacienteIds;
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }

@@ -19,13 +19,10 @@ public class DoutorRequestDTO {
     @Email(message = "E-mail inválido")
     private String email;
 
-    // IDs das especialidades que o doutor possui
     private List<Long> especialidadeIds;
 
-    // IDs dos pacientes atendidos (opcional)
     private List<Long> pacienteIds;
 
-    // Getters e Setters
     public String getNome() {
         return nome;
     }

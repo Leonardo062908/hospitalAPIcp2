@@ -28,7 +28,6 @@ public class PacienteRequestDTO {
     private Long hospitalId;
     private List<Long> doutorIds;
 
-    // Getters e Setters
     public String getNome() {
         return nome;
     }

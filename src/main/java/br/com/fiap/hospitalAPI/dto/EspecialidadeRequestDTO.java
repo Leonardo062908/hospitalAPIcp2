@@ -9,7 +9,6 @@ public class EspecialidadeRequestDTO {
 
     private String descricao;
 
-    // Getters e Setters
     public String getNome() {
         return nome;
     }

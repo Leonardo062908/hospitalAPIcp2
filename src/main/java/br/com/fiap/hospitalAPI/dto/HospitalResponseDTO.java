@@ -7,7 +7,6 @@ public class HospitalResponseDTO {
     private String cnpj;
     private EnderecoResponseDTO endereco;
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }

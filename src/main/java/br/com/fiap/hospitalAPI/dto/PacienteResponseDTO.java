@@ -14,7 +14,6 @@ public class PacienteResponseDTO {
     private Long hospitalId;
     private List<Long> doutorIds;
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }
