@@ -14,14 +14,11 @@ public class Doutor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O nome não pode estar em branco!")
     private String nome;
 
     @Column(unique = true)
-    @Pattern(regexp = "\\d{4,6}", message = "CRM deve conter de 4 a 6 dígitos")
     private String crm;
 
-    @Email(message = "O e-mail deve ser válido")
     private String email;
 
     //Relacionamento N:N com Paciente

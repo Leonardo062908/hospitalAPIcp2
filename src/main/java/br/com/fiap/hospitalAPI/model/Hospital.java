@@ -16,7 +16,6 @@ public class Hospital {
     @NotBlank(message = "O nome do hospital é obrigatório")
     private String nome;
 
-    @Pattern(regexp = "\\d{14}", message = "CNPJ deve conter 14 dígitos")
     @Column(unique = true)
     private String cnpj;
 

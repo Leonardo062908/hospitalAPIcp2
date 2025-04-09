@@ -17,19 +17,15 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     private String nome;
 
-    @Pattern(regexp = "\\d{11}", message = "CPF deve conter 11 dígitos")
     @Column(unique = true)
     private String cpf;
 
-    @Past
     private LocalDate dataNascimento;
 
     private String doencas;
 
-    @Pattern(regexp = "\\d{11}", message = "Telefone deve conter 11 dígitos")
     private String telefone;
 
     @ManyToMany
