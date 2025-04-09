@@ -13,7 +13,6 @@ public class Hospital {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O nome do hospital é obrigatório")
     private String nome;
 
     @Column(unique = true)
