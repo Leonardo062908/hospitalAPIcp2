@@ -69,8 +69,6 @@ Construir uma API completa com:
 
 ---
 
-## 🛠 Como rodar o projeto
+## 📊 Diagrama de Entidades
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/Leonardo062908/hospitalAPIcp2.git
+![Diagrama de Entidades](./diagrama.png)
