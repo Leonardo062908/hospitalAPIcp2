@@ -4,7 +4,7 @@ import br.com.fiap.hospitalAPI.dto.EspecialidadeRequestDTO;
 import br.com.fiap.hospitalAPI.dto.EspecialidadeResponseDTO;
 import br.com.fiap.hospitalAPI.mapper.EspecialidadeMapper;
 import br.com.fiap.hospitalAPI.model.Especialidade;
-import br.com.fiap.hospitalAPI.Repository.EspecialidadeRepository;
+import br.com.fiap.hospitalAPI.repository.EspecialidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

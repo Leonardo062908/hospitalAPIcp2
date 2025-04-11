@@ -1,4 +1,4 @@
-package br.com.fiap.hospitalAPI.Repository;
+package br.com.fiap.hospitalAPI.repository;
 
 import br.com.fiap.hospitalAPI.model.Doutor;
 import org.springframework.data.jpa.repository.JpaRepository;

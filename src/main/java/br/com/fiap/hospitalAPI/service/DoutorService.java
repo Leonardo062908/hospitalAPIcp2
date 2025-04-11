@@ -4,7 +4,7 @@ import br.com.fiap.hospitalAPI.dto.DoutorRequestDTO;
 import br.com.fiap.hospitalAPI.dto.DoutorResponseDTO;
 import br.com.fiap.hospitalAPI.mapper.DoutorMapper;
 import br.com.fiap.hospitalAPI.model.Doutor;
-import br.com.fiap.hospitalAPI.Repository.DoutorRepository;
+import br.com.fiap.hospitalAPI.repository.DoutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

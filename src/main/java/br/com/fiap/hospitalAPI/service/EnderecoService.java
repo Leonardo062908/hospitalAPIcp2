@@ -4,7 +4,7 @@ import br.com.fiap.hospitalAPI.dto.EnderecoRequestDTO;
 import br.com.fiap.hospitalAPI.dto.EnderecoResponseDTO;
 import br.com.fiap.hospitalAPI.mapper.EnderecoMapper;
 import br.com.fiap.hospitalAPI.model.Endereco;
-import br.com.fiap.hospitalAPI.Repository.EnderecoRepository;
+import br.com.fiap.hospitalAPI.repository.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

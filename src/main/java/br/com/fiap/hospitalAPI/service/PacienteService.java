@@ -4,11 +4,10 @@ import br.com.fiap.hospitalAPI.dto.PacienteRequestDTO;
 import br.com.fiap.hospitalAPI.dto.PacienteResponseDTO;
 import br.com.fiap.hospitalAPI.mapper.PacienteMapper;
 import br.com.fiap.hospitalAPI.model.Doutor;
-import br.com.fiap.hospitalAPI.model.Hospital;
 import br.com.fiap.hospitalAPI.model.Paciente;
-import br.com.fiap.hospitalAPI.Repository.DoutorRepository;
-import br.com.fiap.hospitalAPI.Repository.HospitalRepository;
-import br.com.fiap.hospitalAPI.Repository.PacienteRepository;
+import br.com.fiap.hospitalAPI.repository.DoutorRepository;
+import br.com.fiap.hospitalAPI.repository.HospitalRepository;
+import br.com.fiap.hospitalAPI.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
