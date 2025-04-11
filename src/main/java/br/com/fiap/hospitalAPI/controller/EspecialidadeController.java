@@ -22,8 +22,12 @@ import java.util.List;
 @Tag(name = "especialidade")
 public class EspecialidadeController {
 
+    private final EspecialidadeService especialidadeService;
+
     @Autowired
-    private EspecialidadeService especialidadeService;
+    public EspecialidadeController (EspecialidadeService especialidadeService) {
+        this.especialidadeService = especialidadeService;
+    }
 
     @Operation(summary = "Cria uma nova especialidade")
     @ApiResponses(value = {

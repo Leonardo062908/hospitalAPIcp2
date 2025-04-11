@@ -17,10 +17,14 @@ import java.util.stream.Collectors;
 @Service
 public class EspecialidadeService {
 
+    private final EspecialidadeRepository especialidadeRepository;
+    private final DoutorRepository doutorRepository;
+
     @Autowired
-    private EspecialidadeRepository especialidadeRepository;
-    @Autowired
-    private DoutorRepository doutorRepository;
+    public EspecialidadeService (EspecialidadeRepository especialidadeRepository, DoutorRepository doutorRepository) {
+        this.especialidadeRepository = especialidadeRepository;
+        this.doutorRepository = doutorRepository;
+    }
 
     public List<EspecialidadeResponseDTO> listarTodos() {
         return especialidadeRepository.findAll()

@@ -15,8 +15,12 @@ import java.util.stream.Collectors;
 @Service
 public class EnderecoService {
 
+    private final EnderecoRepository enderecoRepository;
+
     @Autowired
-    private EnderecoRepository enderecoRepository;
+    public EnderecoService (EnderecoRepository enderecoRepository) {
+        this.enderecoRepository = enderecoRepository;
+    }
 
     public List<EnderecoResponseDTO> listarTodos() {
         return enderecoRepository.findAll()

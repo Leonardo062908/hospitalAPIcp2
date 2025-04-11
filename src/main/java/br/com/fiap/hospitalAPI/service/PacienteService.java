@@ -17,14 +17,16 @@ import java.util.stream.Collectors;
 @Service
 public class PacienteService {
 
-    @Autowired
-    private PacienteRepository pacienteRepository;
+    private final PacienteRepository pacienteRepository;
+    private final HospitalRepository hospitalRepository;
+    private final DoutorRepository doutorRepository;
 
     @Autowired
-    private HospitalRepository hospitalRepository;
-
-    @Autowired
-    private DoutorRepository doutorRepository;
+    public PacienteService (PacienteRepository pacienteRepository, HospitalRepository hospitalRepository, DoutorRepository doutorRepository) {
+        this.pacienteRepository = pacienteRepository;
+        this.hospitalRepository = hospitalRepository;
+        this.doutorRepository = doutorRepository;
+    }
 
     public List<PacienteResponseDTO> listarTodos() {
         return pacienteRepository.findAll()

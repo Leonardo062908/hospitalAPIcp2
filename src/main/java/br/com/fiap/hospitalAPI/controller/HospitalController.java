@@ -22,8 +22,12 @@ import java.util.List;
 @Tag(name = "hospital")
 public class HospitalController {
 
+    private final HospitalService hospitalService;
+
     @Autowired
-    private HospitalService hospitalService;
+    public HospitalController (HospitalService hospitalService) {
+        this.hospitalService = hospitalService;
+    }
 
     @Operation(summary = "Cria um novo hospital")
     @ApiResponses(value = {

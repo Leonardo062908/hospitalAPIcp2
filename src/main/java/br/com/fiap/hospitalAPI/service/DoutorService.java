@@ -21,14 +21,18 @@ import java.util.stream.Collectors;
 @Service
 public class DoutorService {
 
+    private final DoutorRepository doutorRepository;
+    private final HospitalRepository hospitalRepository;
+    private final PacienteRepository pacienteRepository;
+    private final EspecialidadeRepository especialidadeRepository;
+
     @Autowired
-    private DoutorRepository doutorRepository;
-    @Autowired
-    private HospitalRepository hospitalRepository;
-    @Autowired
-    private PacienteRepository pacienteRepository;
-    @Autowired
-    private EspecialidadeRepository especialidadeRepository;
+    public DoutorService(DoutorRepository doutorRepository, HospitalRepository hospitalRepository, PacienteRepository pacienteRepository, EspecialidadeRepository especialidadeRepository) {
+        this.doutorRepository = doutorRepository;
+        this.hospitalRepository = hospitalRepository;
+        this.pacienteRepository = pacienteRepository;
+        this.especialidadeRepository = especialidadeRepository;
+    }
 
     public List<DoutorResponseDTO> listarTodos() {
         return doutorRepository.findAll()

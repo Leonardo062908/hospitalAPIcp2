@@ -22,8 +22,12 @@ import java.util.List;
 @Tag(name = "paciente")
 public class PacienteController {
 
+    private final PacienteService pacienteService;
+
     @Autowired
-    private PacienteService pacienteService;
+    public PacienteController (PacienteService pacienteService) {
+        this.pacienteService = pacienteService;
+    }
 
     @Operation(summary = "Cria um novo paciente")
     @ApiResponses(value = {

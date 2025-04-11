@@ -15,8 +15,12 @@ import java.util.stream.Collectors;
 @Service
 public class HospitalService {
 
+    private final HospitalRepository hospitalRepository;
+
     @Autowired
-    private HospitalRepository hospitalRepository;
+    public HospitalService (HospitalRepository hospitalRepository) {
+        this.hospitalRepository = hospitalRepository;
+    }
 
     public List<HospitalResponseDTO> listarTodos() {
         return hospitalRepository.findAll()
