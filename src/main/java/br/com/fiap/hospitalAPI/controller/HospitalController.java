@@ -77,6 +77,8 @@ public class HospitalController {
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = HospitalResponseDTO.class))),
+            @ApiResponse(responseCode = "400", description = "Parâmetros informados são inválidos",
+                    content = @Content(schema = @Schema())),
             @ApiResponse(responseCode = "404", description = "Nenhum hospital encontrado para o ID fornecido",
                     content = @Content(schema = @Schema()))
     })

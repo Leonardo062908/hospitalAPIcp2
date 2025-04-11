@@ -36,12 +36,8 @@ public class DoutorController {
     })
     @PostMapping
     public ResponseEntity<DoutorResponseDTO> criarDoutor(@Valid @RequestBody DoutorRequestDTO doutorRequest) {
-        try {
-            DoutorResponseDTO doutor = doutorService.criar(doutorRequest);
-            return new ResponseEntity<>(doutor, HttpStatus.CREATED);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        DoutorResponseDTO doutor = doutorService.criar(doutorRequest);
+        return new ResponseEntity<>(doutor, HttpStatus.CREATED);
     }
 
     @Operation(summary = "Lista todos os doutores")
@@ -89,15 +85,11 @@ public class DoutorController {
     @PutMapping("/{id}")
     public ResponseEntity<DoutorResponseDTO> atualizarDoutor(@PathVariable Long id,
                                                              @Valid @RequestBody DoutorRequestDTO doutorRequest) {
-        try {
-            DoutorResponseDTO doutor = doutorService.atualizar(id, doutorRequest);
-            if (doutor == null) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>(doutor, HttpStatus.OK);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        DoutorResponseDTO doutor = doutorService.atualizar(id, doutorRequest);
+        if (doutor == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<>(doutor, HttpStatus.OK);
     }
 
     @Operation(summary = "Exclui um doutor por ID")

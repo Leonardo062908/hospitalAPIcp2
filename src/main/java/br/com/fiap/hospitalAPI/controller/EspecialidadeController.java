@@ -77,6 +77,8 @@ public class EspecialidadeController {
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = EspecialidadeResponseDTO.class))),
+            @ApiResponse(responseCode = "400", description = "Parâmetros informados são inválidos",
+                    content = @Content(schema = @Schema())),
             @ApiResponse(responseCode = "404", description = "Nenhuma especialidade encontrada para o ID fornecido",
                     content = @Content(schema = @Schema()))
     })
