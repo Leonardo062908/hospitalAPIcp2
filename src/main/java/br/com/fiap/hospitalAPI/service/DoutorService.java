@@ -4,7 +4,10 @@ import br.com.fiap.hospitalAPI.dto.DoutorRequestDTO;
 import br.com.fiap.hospitalAPI.dto.DoutorResponseDTO;
 import br.com.fiap.hospitalAPI.mapper.DoutorMapper;
 import br.com.fiap.hospitalAPI.model.Doutor;
+import br.com.fiap.hospitalAPI.model.Hospital;
 import br.com.fiap.hospitalAPI.repository.DoutorRepository;
+import br.com.fiap.hospitalAPI.repository.HospitalRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,8 @@ public class DoutorService {
 
     @Autowired
     private DoutorRepository doutorRepository;
+    @Autowired
+    private HospitalRepository hospitalRepository;
 
     public List<DoutorResponseDTO> listarTodos() {
         return doutorRepository.findAll()
@@ -31,7 +36,13 @@ public class DoutorService {
     }
 
     public DoutorResponseDTO criar(DoutorRequestDTO dto) {
+        Optional<Hospital> optionalHospital = hospitalRepository.findById(dto.getHospitalId());
+        if (optionalHospital.isEmpty()) {
+            throw new IllegalArgumentException("Hospital não encontrado com ID: " + dto.getHospitalId());
+        }
+
         Doutor entity = DoutorMapper.toEntity(dto);
+        entity.setHospital(optionalHospital.get());
         Doutor salvo = doutorRepository.save(entity);
         return DoutorMapper.toResponseDTO(salvo);
     }
@@ -46,6 +57,12 @@ public class DoutorService {
         existente.setNome(dto.getNome());
         existente.setCrm(dto.getCrm());
         existente.setEmail(dto.getEmail());
+
+        Optional<Hospital> optionalHospital = hospitalRepository.findById(dto.getHospitalId());
+        if (optionalHospital.isEmpty()) {
+            throw new IllegalArgumentException("Hospital não encontrado com ID: " + dto.getHospitalId());
+        }
+        existente.setHospital(optionalHospital.get());
 
         Doutor atualizado = doutorRepository.save(existente);
         return DoutorMapper.toResponseDTO(atualizado);
