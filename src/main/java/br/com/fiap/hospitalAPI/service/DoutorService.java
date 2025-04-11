@@ -37,13 +37,13 @@ public class DoutorService {
     public List<DoutorResponseDTO> listarTodos() {
         return doutorRepository.findAll()
                 .stream()
-                .map(DoutorMapper::toResponseDTO)
+                .map((Doutor doutor) -> DoutorMapper.toResponseDTO(doutor, true))
                 .collect(Collectors.toList());
     }
 
     public DoutorResponseDTO buscarPorId(Long id) {
         Optional<Doutor> optional = doutorRepository.findById(id);
-        return optional.map(DoutorMapper::toResponseDTO).orElse(null);
+        return optional.map((Doutor doutor) -> DoutorMapper.toResponseDTO(doutor, false)).orElse(null);
     }
 
     public DoutorResponseDTO criar(DoutorRequestDTO dto) {
@@ -63,7 +63,7 @@ public class DoutorService {
         }
 
         Doutor salvo = doutorRepository.save(entity);
-        return DoutorMapper.toResponseDTO(salvo);
+        return DoutorMapper.toResponseDTO(salvo, true);
     }
 
     public DoutorResponseDTO atualizar(Long id, DoutorRequestDTO dto) {
@@ -92,7 +92,7 @@ public class DoutorService {
         }
 
         Doutor atualizado = doutorRepository.save(existente);
-        return DoutorMapper.toResponseDTO(atualizado);
+        return DoutorMapper.toResponseDTO(atualizado, true);
     }
 
     public boolean deletar(Long id) {

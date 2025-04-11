@@ -1,5 +1,7 @@
 package br.com.fiap.hospitalAPI.dto;
 
+import org.springframework.hateoas.Link;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class PacienteResponseDTO {
     private String telefone;
     private HateoasDto hospitalId;
     private List<HateoasDto> doutorIds;
+    private Link link;
 
     public Long getId() {
         return id;
@@ -76,5 +79,13 @@ public class PacienteResponseDTO {
 
     public void setDoutorIds(List<HateoasDto> doutorIds) {
         this.doutorIds = doutorIds;
+    }
+
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
     }
 }

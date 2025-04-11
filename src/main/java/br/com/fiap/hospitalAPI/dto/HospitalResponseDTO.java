@@ -1,11 +1,14 @@
 package br.com.fiap.hospitalAPI.dto;
 
+import org.springframework.hateoas.Link;
+
 public class HospitalResponseDTO {
 
     private Long id;
     private String nome;
     private String cnpj;
     private EnderecoResponseDTO endereco;
+    private Link link;
 
     public Long getId() {
         return id;
@@ -37,5 +40,13 @@ public class HospitalResponseDTO {
 
     public void setEndereco(EnderecoResponseDTO endereco) {
         this.endereco = endereco;
+    }
+
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
     }
 }

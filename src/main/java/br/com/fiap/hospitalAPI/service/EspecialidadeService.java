@@ -29,13 +29,13 @@ public class EspecialidadeService {
     public List<EspecialidadeResponseDTO> listarTodos() {
         return especialidadeRepository.findAll()
                 .stream()
-                .map(EspecialidadeMapper::toResponseDTO)
+                .map((Especialidade especialidade) -> EspecialidadeMapper.toResponseDTO(especialidade, true))
                 .collect(Collectors.toList());
     }
 
     public EspecialidadeResponseDTO buscarPorId(Long id) {
         Optional<Especialidade> optional = especialidadeRepository.findById(id);
-        return optional.map(EspecialidadeMapper::toResponseDTO).orElse(null);
+        return optional.map((Especialidade especialidade) -> EspecialidadeMapper.toResponseDTO(especialidade, false)).orElse(null);
     }
 
     public EspecialidadeResponseDTO criar(EspecialidadeRequestDTO dto) {
@@ -47,7 +47,7 @@ public class EspecialidadeService {
         }
 
         Especialidade salvo = especialidadeRepository.save(especialidade);
-        return EspecialidadeMapper.toResponseDTO(salvo);
+        return EspecialidadeMapper.toResponseDTO(salvo, true);
     }
 
     public EspecialidadeResponseDTO atualizar(Long id, EspecialidadeRequestDTO dto) {
@@ -66,7 +66,7 @@ public class EspecialidadeService {
         }
 
         Especialidade atualizado = especialidadeRepository.save(existente);
-        return EspecialidadeMapper.toResponseDTO(atualizado);
+        return EspecialidadeMapper.toResponseDTO(atualizado, true);
     }
 
     public boolean deletar(Long id) {

@@ -25,19 +25,19 @@ public class HospitalService {
     public List<HospitalResponseDTO> listarTodos() {
         return hospitalRepository.findAll()
                 .stream()
-                .map(HospitalMapper::toResponseDTO)
+                .map((Hospital hospital) -> HospitalMapper.toResponseDTO(hospital, true))
                 .collect(Collectors.toList());
     }
 
     public HospitalResponseDTO buscarPorId(Long id) {
         Optional<Hospital> optional = hospitalRepository.findById(id);
-        return optional.map(HospitalMapper::toResponseDTO).orElse(null);
+        return optional.map((Hospital hospital) -> HospitalMapper.toResponseDTO(hospital, false)).orElse(null);
     }
 
     public HospitalResponseDTO criar(HospitalRequestDTO dto) {
         Hospital hospital = HospitalMapper.toEntity(dto);
         Hospital salvo = hospitalRepository.save(hospital);
-        return HospitalMapper.toResponseDTO(salvo);
+        return HospitalMapper.toResponseDTO(salvo, true);
     }
 
     public HospitalResponseDTO atualizar(Long id, HospitalRequestDTO dto) {
@@ -52,7 +52,7 @@ public class HospitalService {
         existente.setEndereco(HospitalMapper.toEntity(dto).getEndereco());
 
         Hospital atualizado = hospitalRepository.save(existente);
-        return HospitalMapper.toResponseDTO(atualizado);
+        return HospitalMapper.toResponseDTO(atualizado, true);
     }
 
     public boolean deletar(Long id) {

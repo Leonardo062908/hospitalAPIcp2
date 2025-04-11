@@ -31,13 +31,13 @@ public class PacienteService {
     public List<PacienteResponseDTO> listarTodos() {
         return pacienteRepository.findAll()
                 .stream()
-                .map(PacienteMapper::toResponseDTO)
+                .map((Paciente paciente) -> PacienteMapper.toResponseDTO(paciente, true))
                 .collect(Collectors.toList());
     }
 
     public PacienteResponseDTO buscarPorId(Long id) {
         return pacienteRepository.findById(id)
-                .map(PacienteMapper::toResponseDTO)
+                .map((Paciente paciente) -> PacienteMapper.toResponseDTO(paciente, false))
                 .orElse(null);
     }
 
@@ -53,7 +53,7 @@ public class PacienteService {
             paciente.setDoutores(doutores);
         }
 
-        return PacienteMapper.toResponseDTO(pacienteRepository.save(paciente));
+        return PacienteMapper.toResponseDTO(pacienteRepository.save(paciente), true);
     }
 
     public PacienteResponseDTO atualizar(Long id, PacienteRequestDTO dto) {
@@ -76,7 +76,7 @@ public class PacienteService {
             paciente.setDoutores(doutores);
         }
 
-        return PacienteMapper.toResponseDTO(pacienteRepository.save(paciente));
+        return PacienteMapper.toResponseDTO(pacienteRepository.save(paciente), true);
     }
 
     public boolean deletar(Long id) {

@@ -8,6 +8,7 @@ import br.com.fiap.hospitalAPI.dto.PacienteRequestDTO;
 import br.com.fiap.hospitalAPI.dto.PacienteResponseDTO;
 import br.com.fiap.hospitalAPI.model.Doutor;
 import br.com.fiap.hospitalAPI.model.Paciente;
+import org.springframework.hateoas.Link;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,7 +31,7 @@ public class PacienteMapper {
         return paciente;
     }
 
-    public static PacienteResponseDTO toResponseDTO(Paciente paciente) {
+    public static PacienteResponseDTO toResponseDTO(Paciente paciente, boolean self) {
         PacienteResponseDTO dto = new PacienteResponseDTO();
         dto.setId(paciente.getId());
         dto.setNome(paciente.getNome());
@@ -51,6 +52,17 @@ public class PacienteMapper {
                 : Collections.emptyList();
 
         dto.setDoutorIds(doutorIds);
+
+        Link link;
+
+        if (self) {
+            link = linkTo(methodOn(PacienteController.class).buscarPacientePorId(paciente.getId())).withSelfRel();
+        } else {
+            link = linkTo(methodOn(PacienteController.class).listarPacientes()).withRel("Lista de Pacientes");
+        }
+
+        dto.setLink(link);
+
         return dto;
     }
 }
