@@ -49,7 +49,7 @@ public class DoutorMapper {
 
         // TODO: Mapear especialidades, pacientes e hospital
         doutor.setEspecialidades(null);
-        doutor.setPacientes(null);
+        doutor.setPacientes(null); // mapeado no service
         doutor.setHospital(null); // mapeado no service
 
         return doutor;

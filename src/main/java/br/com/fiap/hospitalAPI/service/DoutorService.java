@@ -4,9 +4,10 @@ import br.com.fiap.hospitalAPI.dto.DoutorRequestDTO;
 import br.com.fiap.hospitalAPI.dto.DoutorResponseDTO;
 import br.com.fiap.hospitalAPI.mapper.DoutorMapper;
 import br.com.fiap.hospitalAPI.model.Doutor;
-import br.com.fiap.hospitalAPI.model.Hospital;
+import br.com.fiap.hospitalAPI.model.Paciente;
 import br.com.fiap.hospitalAPI.repository.DoutorRepository;
 import br.com.fiap.hospitalAPI.repository.HospitalRepository;
+import br.com.fiap.hospitalAPI.repository.PacienteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,8 @@ public class DoutorService {
     private DoutorRepository doutorRepository;
     @Autowired
     private HospitalRepository hospitalRepository;
+    @Autowired
+    private PacienteRepository pacienteRepository;
 
     public List<DoutorResponseDTO> listarTodos() {
         return doutorRepository.findAll()
@@ -40,6 +43,12 @@ public class DoutorService {
         if (dto.getHospitalId() != null) {
             hospitalRepository.findById(dto.getHospitalId()).ifPresent(entity::setHospital);
         }
+
+        if (dto.getPacienteIds() != null) {
+            List<Paciente> pacientes = pacienteRepository.findAllById(dto.getPacienteIds());
+            entity.setPacientes(pacientes);
+        }
+
         Doutor salvo = doutorRepository.save(entity);
         return DoutorMapper.toResponseDTO(salvo);
     }
@@ -57,6 +66,11 @@ public class DoutorService {
 
         if (dto.getHospitalId() != null) {
             hospitalRepository.findById(dto.getHospitalId()).ifPresent(existente::setHospital);
+        }
+
+        if (dto.getPacienteIds() != null) {
+            List<Paciente> pacientes = pacienteRepository.findAllById(dto.getPacienteIds());
+            existente.setPacientes(pacientes);
         }
 
         Doutor atualizado = doutorRepository.save(existente);
