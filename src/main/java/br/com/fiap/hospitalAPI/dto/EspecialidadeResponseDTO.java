@@ -7,7 +7,7 @@ public class EspecialidadeResponseDTO {
     private Long id;
     private String nome;
     private String descricao;
-    private List<Long> doutorIds;
+    private List<HateoasDto> doutorIds;
 
 
     public Long getId() {
@@ -34,11 +34,11 @@ public class EspecialidadeResponseDTO {
         this.descricao = descricao;
     }
 
-    public List<Long> getDoutorIds() {
+    public List<HateoasDto> getDoutorIds() {
         return doutorIds;
     }
 
-    public void setDoutorIds(List<Long> doutorIds) {
+    public void setDoutorIds(List<HateoasDto> doutorIds) {
         this.doutorIds = doutorIds;
     }
 }

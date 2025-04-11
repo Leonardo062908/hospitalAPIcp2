@@ -9,9 +9,9 @@ public class DoutorResponseDTO {
     private String crm;
     private String email;
 
-    private List<Long> especialidadeIds;
-    private List<Long> pacienteIds;
-    private Long hospitalId;
+    private List<HateoasDto> especialidadeIds;
+    private List<HateoasDto> pacienteIds;
+    private HateoasDto hospitalId;
 
     public Long getId() {
         return id;
@@ -45,27 +45,27 @@ public class DoutorResponseDTO {
         this.email = email;
     }
 
-    public List<Long> getEspecialidadeIds() {
+    public List<HateoasDto> getEspecialidadeIds() {
         return especialidadeIds;
     }
 
-    public void setEspecialidadeIds(List<Long> especialidadeIds) {
+    public void setEspecialidadeIds(List<HateoasDto> especialidadeIds) {
         this.especialidadeIds = especialidadeIds;
     }
 
-    public List<Long> getPacienteIds() {
+    public List<HateoasDto> getPacienteIds() {
         return pacienteIds;
     }
 
-    public void setPacienteIds(List<Long> pacienteIds) {
+    public void setPacienteIds(List<HateoasDto> pacienteIds) {
         this.pacienteIds = pacienteIds;
     }
 
-    public Long getHospitalId() {
+    public HateoasDto getHospitalId() {
         return hospitalId;
     }
 
-    public void setHospitalId(Long hospitalId) {
+    public void setHospitalId(HateoasDto hospitalId) {
         this.hospitalId = hospitalId;
     }
 }

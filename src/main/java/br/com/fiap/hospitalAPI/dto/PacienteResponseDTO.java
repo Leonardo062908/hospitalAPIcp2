@@ -11,8 +11,8 @@ public class PacienteResponseDTO {
     private LocalDate dataNascimento;
     private String doencas;
     private String telefone;
-    private Long hospitalId;
-    private List<Long> doutorIds;
+    private HateoasDto hospitalId;
+    private List<HateoasDto> doutorIds;
 
     public Long getId() {
         return id;
@@ -62,19 +62,19 @@ public class PacienteResponseDTO {
         this.telefone = telefone;
     }
 
-    public Long getHospitalId() {
+    public HateoasDto getHospitalId() {
         return hospitalId;
     }
 
-    public void setHospitalId(Long hospitalId) {
+    public void setHospitalId(HateoasDto hospitalId) {
         this.hospitalId = hospitalId;
     }
 
-    public List<Long> getDoutorIds() {
+    public List<HateoasDto> getDoutorIds() {
         return doutorIds;
     }
 
-    public void setDoutorIds(List<Long> doutorIds) {
+    public void setDoutorIds(List<HateoasDto> doutorIds) {
         this.doutorIds = doutorIds;
     }
 }

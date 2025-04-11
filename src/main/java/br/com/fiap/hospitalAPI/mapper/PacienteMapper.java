@@ -1,5 +1,9 @@
 package br.com.fiap.hospitalAPI.mapper;
 
+import br.com.fiap.hospitalAPI.controller.DoutorController;
+import br.com.fiap.hospitalAPI.controller.HospitalController;
+import br.com.fiap.hospitalAPI.controller.PacienteController;
+import br.com.fiap.hospitalAPI.dto.HateoasDto;
 import br.com.fiap.hospitalAPI.dto.PacienteRequestDTO;
 import br.com.fiap.hospitalAPI.dto.PacienteResponseDTO;
 import br.com.fiap.hospitalAPI.model.Doutor;
@@ -8,6 +12,9 @@ import br.com.fiap.hospitalAPI.model.Paciente;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 public class PacienteMapper {
 
@@ -32,10 +39,15 @@ public class PacienteMapper {
         dto.setDoencas(paciente.getDoencas());
         dto.setTelefone(paciente.getTelefone());
 
-        dto.setHospitalId(paciente.getHospital() != null ? paciente.getHospital().getId() : null);
+        if (paciente.getHospital() != null) {
+            Long idHospital = paciente.getHospital().getId();
+            dto.setHospitalId(new HateoasDto(idHospital, linkTo(methodOn(HospitalController.class).buscarHospitalPorId(idHospital)).withSelfRel()));
+        }
 
-        List<Long> doutorIds = paciente.getDoutores() != null
-                ? paciente.getDoutores().stream().map(Doutor::getId).collect(Collectors.toList())
+        List<HateoasDto> doutorIds = paciente.getDoutores() != null
+                ? paciente.getDoutores().stream().map(doutor -> {
+            return new HateoasDto(doutor.getId(), linkTo(methodOn(DoutorController.class).buscarDoutorPorId(doutor.getId())).withSelfRel());
+        }).collect(Collectors.toList())
                 : Collections.emptyList();
 
         dto.setDoutorIds(doutorIds);
