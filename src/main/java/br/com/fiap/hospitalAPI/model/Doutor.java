@@ -1,9 +1,6 @@
 package br.com.fiap.hospitalAPI.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 
 import java.util.List;
 
@@ -32,6 +29,10 @@ public class Doutor {
             inverseJoinColumns = @JoinColumn(name = "especialidade_id")
     )
     private List<Especialidade> especialidades;
+
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    private Hospital hospital;
 
     public Long getId() {
         return id;
@@ -79,5 +80,13 @@ public class Doutor {
 
     public void setEspecialidades(List<Especialidade> especialidades) {
         this.especialidades = especialidades;
+    }
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
     }
 }

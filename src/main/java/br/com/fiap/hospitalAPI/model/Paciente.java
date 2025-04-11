@@ -1,11 +1,6 @@
 package br.com.fiap.hospitalAPI.model;
 
-import br.com.fiap.hospitalAPI.model.Doutor;
-import br.com.fiap.hospitalAPI.model.Hospital;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDate;
 import java.util.List;
