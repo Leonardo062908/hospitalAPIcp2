@@ -3,7 +3,9 @@ package br.com.fiap.hospitalAPI.service;
 import br.com.fiap.hospitalAPI.dto.EspecialidadeRequestDTO;
 import br.com.fiap.hospitalAPI.dto.EspecialidadeResponseDTO;
 import br.com.fiap.hospitalAPI.mapper.EspecialidadeMapper;
+import br.com.fiap.hospitalAPI.model.Doutor;
 import br.com.fiap.hospitalAPI.model.Especialidade;
+import br.com.fiap.hospitalAPI.repository.DoutorRepository;
 import br.com.fiap.hospitalAPI.repository.EspecialidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ public class EspecialidadeService {
 
     @Autowired
     private EspecialidadeRepository especialidadeRepository;
+    @Autowired
+    private DoutorRepository doutorRepository;
 
     public List<EspecialidadeResponseDTO> listarTodos() {
         return especialidadeRepository.findAll()
@@ -32,6 +36,12 @@ public class EspecialidadeService {
 
     public EspecialidadeResponseDTO criar(EspecialidadeRequestDTO dto) {
         Especialidade especialidade = EspecialidadeMapper.toEntity(dto);
+
+        if (dto.getDoutorIds() != null) {
+            List<Doutor> doutores = doutorRepository.findAllById(dto.getDoutorIds());
+            especialidade.setDoutores(doutores);
+        }
+
         Especialidade salvo = especialidadeRepository.save(especialidade);
         return EspecialidadeMapper.toResponseDTO(salvo);
     }
@@ -45,6 +55,11 @@ public class EspecialidadeService {
         Especialidade existente = optional.get();
         existente.setNome(dto.getNome());
         existente.setDescricao(dto.getDescricao());
+
+        if (dto.getDoutorIds() != null) {
+            List<Doutor> doutores = doutorRepository.findAllById(dto.getDoutorIds());
+            existente.setDoutores(doutores);
+        }
 
         Especialidade atualizado = especialidadeRepository.save(existente);
         return EspecialidadeMapper.toResponseDTO(atualizado);

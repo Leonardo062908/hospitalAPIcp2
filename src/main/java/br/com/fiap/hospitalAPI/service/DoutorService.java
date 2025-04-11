@@ -4,8 +4,10 @@ import br.com.fiap.hospitalAPI.dto.DoutorRequestDTO;
 import br.com.fiap.hospitalAPI.dto.DoutorResponseDTO;
 import br.com.fiap.hospitalAPI.mapper.DoutorMapper;
 import br.com.fiap.hospitalAPI.model.Doutor;
+import br.com.fiap.hospitalAPI.model.Especialidade;
 import br.com.fiap.hospitalAPI.model.Paciente;
 import br.com.fiap.hospitalAPI.repository.DoutorRepository;
+import br.com.fiap.hospitalAPI.repository.EspecialidadeRepository;
 import br.com.fiap.hospitalAPI.repository.HospitalRepository;
 import br.com.fiap.hospitalAPI.repository.PacienteRepository;
 
@@ -25,6 +27,8 @@ public class DoutorService {
     private HospitalRepository hospitalRepository;
     @Autowired
     private PacienteRepository pacienteRepository;
+    @Autowired
+    private EspecialidadeRepository especialidadeRepository;
 
     public List<DoutorResponseDTO> listarTodos() {
         return doutorRepository.findAll()
@@ -49,6 +53,11 @@ public class DoutorService {
             entity.setPacientes(pacientes);
         }
 
+        if (dto.getEspecialidadeIds() != null) {
+            List<Especialidade> especialidades = especialidadeRepository.findAllById(dto.getEspecialidadeIds());
+            entity.setEspecialidades(especialidades);
+        }
+
         Doutor salvo = doutorRepository.save(entity);
         return DoutorMapper.toResponseDTO(salvo);
     }
@@ -71,6 +80,11 @@ public class DoutorService {
         if (dto.getPacienteIds() != null) {
             List<Paciente> pacientes = pacienteRepository.findAllById(dto.getPacienteIds());
             existente.setPacientes(pacientes);
+        }
+
+        if (dto.getEspecialidadeIds() != null) {
+            List<Especialidade> especialidades = especialidadeRepository.findAllById(dto.getEspecialidadeIds());
+            existente.setEspecialidades(especialidades);
         }
 
         Doutor atualizado = doutorRepository.save(existente);
