@@ -18,6 +18,8 @@ public class PacienteMapper {
         paciente.setDataNascimento(dto.getDataNascimento());
         paciente.setDoencas(dto.getDoencas());
         paciente.setTelefone(dto.getTelefone());
+
+        // TODO: Mapear doutores e hospital
         paciente.setHospital(null);
         paciente.setDoutores(null);
         return paciente;

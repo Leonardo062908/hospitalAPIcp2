@@ -34,6 +34,10 @@ public class DoutorMapper {
             );
         }
 
+        if (doutor.getHospital() != null) {
+            dto.setHospitalId(doutor.getHospital().getId());
+        }
+
         return dto;
     }
 
@@ -43,8 +47,10 @@ public class DoutorMapper {
         doutor.setCrm(dto.getCrm());
         doutor.setEmail(dto.getEmail());
 
+        // TODO: Mapear especialidades, pacientes e hospital
         doutor.setEspecialidades(null);
         doutor.setPacientes(null);
+        doutor.setHospital(null);
 
         return doutor;
     }
