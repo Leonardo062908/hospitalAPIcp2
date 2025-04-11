@@ -23,7 +23,6 @@ public class DoutorRequestDTO {
 
     private List<Long> pacienteIds;
 
-    @NotBlank(message = "O ID do hospital é obrigatório")
     private Long hospitalId;
 
     public String getNome() {
