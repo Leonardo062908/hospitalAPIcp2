@@ -36,13 +36,10 @@ public class DoutorService {
     }
 
     public DoutorResponseDTO criar(DoutorRequestDTO dto) {
-        Optional<Hospital> optionalHospital = hospitalRepository.findById(dto.getHospitalId());
-        if (optionalHospital.isEmpty()) {
-            throw new IllegalArgumentException("Hospital não encontrado com ID: " + dto.getHospitalId());
-        }
-
         Doutor entity = DoutorMapper.toEntity(dto);
-        entity.setHospital(optionalHospital.get());
+        if (dto.getHospitalId() != null) {
+            hospitalRepository.findById(dto.getHospitalId()).ifPresent(entity::setHospital);
+        }
         Doutor salvo = doutorRepository.save(entity);
         return DoutorMapper.toResponseDTO(salvo);
     }
@@ -58,11 +55,9 @@ public class DoutorService {
         existente.setCrm(dto.getCrm());
         existente.setEmail(dto.getEmail());
 
-        Optional<Hospital> optionalHospital = hospitalRepository.findById(dto.getHospitalId());
-        if (optionalHospital.isEmpty()) {
-            throw new IllegalArgumentException("Hospital não encontrado com ID: " + dto.getHospitalId());
+        if (dto.getHospitalId() != null) {
+            hospitalRepository.findById(dto.getHospitalId()).ifPresent(existente::setHospital);
         }
-        existente.setHospital(optionalHospital.get());
 
         Doutor atualizado = doutorRepository.save(existente);
         return DoutorMapper.toResponseDTO(atualizado);
