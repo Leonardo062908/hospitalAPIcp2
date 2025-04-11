@@ -11,6 +11,7 @@ public class DoutorResponseDTO {
 
     private List<Long> especialidadeIds;
     private List<Long> pacienteIds;
+    private Long hospitalId;
 
     public Long getId() {
         return id;
@@ -58,5 +59,13 @@ public class DoutorResponseDTO {
 
     public void setPacienteIds(List<Long> pacienteIds) {
         this.pacienteIds = pacienteIds;
+    }
+
+    public Long getHospitalId() {
+        return hospitalId;
+    }
+
+    public void setHospitalId(Long hospitalId) {
+        this.hospitalId = hospitalId;
     }
 }

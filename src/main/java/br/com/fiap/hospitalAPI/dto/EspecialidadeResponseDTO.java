@@ -1,10 +1,14 @@
 package br.com.fiap.hospitalAPI.dto;
 
+import java.util.List;
+
 public class EspecialidadeResponseDTO {
 
     private Long id;
     private String nome;
     private String descricao;
+    private List<Long> doutorIds;
+
 
     public Long getId() {
         return id;
@@ -28,5 +32,13 @@ public class EspecialidadeResponseDTO {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public List<Long> getDoutorIds() {
+        return doutorIds;
+    }
+
+    public void setDoutorIds(List<Long> doutorIds) {
+        this.doutorIds = doutorIds;
     }
 }
